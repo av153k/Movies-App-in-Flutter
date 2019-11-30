@@ -79,48 +79,89 @@ class _GetDataState extends State<GetData> {
                       );
                     }
                     return GridView.builder(
-                      scrollDirection: Axis.vertical,
-                      controller: ScrollController(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 1,
-                        mainAxisSpacing: 1,
-                        childAspectRatio: 0.53,
-                      ),
-                      padding: EdgeInsets.all(8.0),
-                      itemCount: mrmSnapshot.data.data.movies.length,
-                      itemBuilder: (context, index) {
-                        Movies movie = mrmSnapshot.data.data.movies[index];
-                        return GestureDetector(
-                          child: Container(
+                        scrollDirection: Axis.vertical,
+                        controller: ScrollController(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 1,
+                          mainAxisSpacing: 1,
+                          childAspectRatio: 0.53,
+                        ),
+                        padding: EdgeInsets.all(8.0),
+                        itemCount: mrmSnapshot.data.data.movies.length,
+                        itemBuilder: (context, index) {
+                          Movies movie = mrmSnapshot.data.data.movies[index];
+                          return Container(
                               alignment: Alignment.topCenter,
                               child: Card(
-                                semanticContainer: false,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                elevation: 10.0,
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.topCenter,
-                                      margin: EdgeInsets.all(5),
-                                      child:
-                                          Image.network(movie.largeCoverImage),
+                                  semanticContainer: false,
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  elevation: 10.0,
+                                  child: InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => Container(
+                                              alignment: Alignment.center,
+                                              child: Card(
+                                                child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      Container(
+                                                          alignment: Alignment
+                                                              .topCenter,
+                                                          child: Image.network(movie
+                                                              .backgroundImageOriginal)),
+                                                      Container(
+                                                          child: Text(
+                                                              "IMdB Rating - " +
+                                                                  movie.rating
+                                                                      .toString(),
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      20))),
+                                                      Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  50),
+                                                          alignment: Alignment
+                                                              .bottomCenter,
+                                                          child: Text(
+                                                              "Movie Description :- \n\n" +
+                                                                  movie
+                                                                      .descriptionFull,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)))
+                                                    ]),
+                                              )));
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.topCenter,
+                                          margin: EdgeInsets.all(5),
+                                          child: Image.network(
+                                              movie.largeCoverImage),
+                                        ),
+                                        Container(
+                                            alignment: Alignment.bottomLeft,
+                                            margin: EdgeInsets.all(30),
+                                            child: Text(movie.titleLong,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)))
+                                      ],
                                     ),
-                                    Container(
-                                        alignment: Alignment.bottomLeft,
-                                        margin: EdgeInsets.all(30),
-                                        child: Text(movie.titleLong,
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold)))
-                                  ],
-                                ),
-                              )),
-                        );
-                      },
-                    );
+                                  )));
+                        });
                   }),
               FutureBuilder(
                   future: mpmYifyMovies,
@@ -133,48 +174,90 @@ class _GetDataState extends State<GetData> {
                       );
                     }
                     return GridView.builder(
-                      scrollDirection: Axis.vertical,
-                      controller: ScrollController(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 1,
-                        mainAxisSpacing: 1,
-                        childAspectRatio: 0.53,
-                      ),
-                      padding: EdgeInsets.all(8.0),
-                      itemCount: mpmSnapshot.data.data.movies.length,
-                      itemBuilder: (context, index) {
-                        Movies movie = mpmSnapshot.data.data.movies[index];
-                        return GestureDetector(
-                            child: Container(
-                                alignment: Alignment.topCenter,
-                                child: Card(
+                        scrollDirection: Axis.vertical,
+                        controller: ScrollController(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 1,
+                          mainAxisSpacing: 1,
+                          childAspectRatio: 0.53,
+                        ),
+                        padding: EdgeInsets.all(8.0),
+                        itemCount: mpmSnapshot.data.data.movies.length,
+                        itemBuilder: (context, index) {
+                          Movies movie = mpmSnapshot.data.data.movies[index];
+                          return Container(
+                              alignment: Alignment.topCenter,
+                              child: Card(
                                   semanticContainer: false,
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   elevation: 10.0,
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.topCenter,
-                                        margin: EdgeInsets.all(5),
-                                        child: Image.network(
-                                            movie.largeCoverImage),
-                                      ),
-                                      Container(
-                                          alignment: Alignment.bottomLeft,
-                                          margin: EdgeInsets.all(30),
-                                          child: Text(movie.titleLong,
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold)))
-                                    ],
-                                  ),
-                                )));
-                      },
-                    );
-                  }),
+                                  child: InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => Container(
+                                              alignment: Alignment.center,
+                                              child: Card(
+                                                child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      Container(
+                                                          alignment: Alignment
+                                                              .topCenter,
+                                                          child: Image.network(movie
+                                                              .backgroundImageOriginal)),
+                                                      Container(
+                                                          child: Text(
+                                                              "IMdB Rating - " +
+                                                                  movie.rating
+                                                                      .toString(),
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      20))),
+                                                      Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  50),
+                                                          alignment: Alignment
+                                                              .bottomCenter,
+                                                          child: Text(
+                                                              "Movie Description :- \n\n" +
+                                                                  movie
+                                                                      .descriptionFull,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)))
+                                                    ]),
+                                              )));
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.topCenter,
+                                          margin: EdgeInsets.all(5),
+                                          child: Image.network(
+                                              movie.largeCoverImage),
+                                        ),
+                                        Container(
+                                            alignment: Alignment.bottomLeft,
+                                            margin: EdgeInsets.all(30),
+                                            child: Text(movie.titleLong,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)))
+                                      ],
+                                    ),
+                                  )));
+                        });
+                  })
             ])));
   }
 }
