@@ -118,24 +118,6 @@ class _GetDataState extends State<GetData> {
                                   ],
                                 ),
                               )),
-                          onTap: () {
-                            showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 300,
-                                    width: 300,
-                                    color: Colors.white,
-                                      child: Text(movie.descriptionFull,
-                                          style: TextStyle(fontSize: 12, color: Colors.black)))
-                                ],
-                              ),
-                            );
-                          },
                         );
                       },
                     );
